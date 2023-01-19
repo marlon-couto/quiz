@@ -1,5 +1,6 @@
 import React from 'react';
 import quiz from '../assets/img/quiz.svg';
+import '../assets/styles/Welcome.css';
 
 const Welcome = () => {
   return (

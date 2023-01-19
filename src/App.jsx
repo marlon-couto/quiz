@@ -1,5 +1,7 @@
-import './App.css'
+// React > componentes > estáticos
+import React from 'react';
 import Welcome from './components/Welcome'
+import './App.css'
 
 export default function App() {
   return (
