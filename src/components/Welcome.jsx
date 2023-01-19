@@ -4,8 +4,8 @@ import quiz from '../assets/img/quiz.svg';
 import '../assets/styles/Welcome.css';
 
 const Welcome = () => {
-  const quizState = 
-  
+  const quizState = useContext(QuizContext);
+
   return (
     <div id="welcome">
       <h2>Seja bem-vindo</h2>
