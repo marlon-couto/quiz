@@ -36,5 +36,5 @@ button:hover {
     rgba(184, 84, 232, 1) 0%,
     rgba(132, 53, 222, 1) 100%
   );
-  transition: 2s;
+  transition: 0.4s;
 }
