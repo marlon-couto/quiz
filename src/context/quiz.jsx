@@ -34,6 +34,7 @@ const quizReducer = (state, action) => {
         ...state,
         currentQuestion: nextQuestion,
         gameStage: endgame ? STAGES[2] : state.gameStage,
+        answerSelected: false,
       };
 
     case 'NEW_GAME':
@@ -44,7 +45,11 @@ const quizReducer = (state, action) => {
 
       const answer = action.payload.answer;
       const option = action.payload.option;
+      /* TODO: corrigir a implementação da resposta certa. */
       const correctAnswer = answer === option;
+
+      console.log(correctAnswer);
+      console.log(state.score);
 
       return {
         ...state,
