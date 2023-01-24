@@ -14,7 +14,7 @@ const Question = () => {
       type: 'CHECK_ANSWER',
       payload: { answer: currentQuestion.answer, option },
     });
-  }, []);
+  }, [quizState]);
 
   return (
     <div id="question">

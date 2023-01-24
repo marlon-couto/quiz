@@ -45,11 +45,8 @@ const quizReducer = (state, action) => {
 
       const answer = action.payload.answer;
       const option = action.payload.option;
-      /* TODO: corrigir a implementação da resposta certa. */
-      const correctAnswer = answer === option;
 
-      console.log(correctAnswer);
-      console.log(state.score);
+      const correctAnswer = answer === option;
 
       return {
         ...state,
