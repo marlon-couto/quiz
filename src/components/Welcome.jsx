@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
-import { QuizContext } from '../context/quiz';
-import quiz from '../assets/img/quiz.svg';
-import '../assets/styles/Welcome.css';
+import React, { useContext } from 'react'
+import { QuizContext } from '../context/quiz'
+
+import quiz from '../img/quiz.svg'
+import './Welcome.css'
 
 const Welcome = () => {
-  const [quizState, dispatch] = useContext(QuizContext);
+  const [, dispatch] = useContext(QuizContext)
 
   return (
     <div id="welcome">
@@ -18,7 +19,7 @@ const Welcome = () => {
         alt="Início do Quiz"
       />
     </div>
-  );
-};
+  )
+}
 
-export default Welcome;
+export default Welcome
