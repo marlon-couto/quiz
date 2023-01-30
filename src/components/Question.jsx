@@ -1,20 +1,20 @@
-import React, { useContext, useCallback } from 'react';
-import { QuizContext } from '../context/quiz';
+import React, { useContext, useCallback } from 'react'
+import { QuizContext } from '../context/quiz'
 
-import Option from './Option';
+import Option from './Option'
 
-import '../assets/styles/Question.css';
+import './Question.css'
 
 const Question = () => {
-  const [quizState, dispatch] = useContext(QuizContext);
-  const currentQuestion = quizState.questions[quizState.currentQuestion];
+  const [quizState, dispatch] = useContext(QuizContext)
+  const currentQuestion = quizState.questions[quizState.currentQuestion]
 
   const onSelectOption = useCallback((option) => {
     dispatch({
       type: 'CHECK_ANSWER',
-      payload: { answer: currentQuestion.answer, option },
-    });
-  }, [quizState]);
+      payload: { answer: currentQuestion.answer, option }
+    })
+  }, [quizState])
 
   return (
     <div id="question">
@@ -40,7 +40,7 @@ const Question = () => {
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Question;
+export default Question

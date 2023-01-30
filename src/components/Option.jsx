@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
-import { QuizContext } from '../context/quiz';
+import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
+import { QuizContext } from '../context/quiz'
 
-import '../assets/styles/Option.css';
+import './Option.css'
 
 const Option = ({ option, selectOption, answer }) => {
-  const [quizState, dispatch] = useContext(QuizContext);
+  const [quizState] = useContext(QuizContext)
 
   return (
     <div
@@ -15,7 +16,13 @@ const Option = ({ option, selectOption, answer }) => {
     >
       <p>{option}</p>
     </div>
-  );
-};
+  )
+}
 
-export default Option;
+Option.propTypes = {
+  answer: PropTypes.string,
+  option: PropTypes.string,
+  selectOption: PropTypes.func
+}.isRequired
+
+export default Option

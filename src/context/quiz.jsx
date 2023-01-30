@@ -1,67 +1,80 @@
-import { createContext, useReducer } from 'react';
-import questions from '../data/questions.js';
+import PropTypes from 'prop-types'
+import React, { createContext, useReducer } from 'react'
 
-const STAGES = ['Start', 'Playing', 'End'];
+import questions from '../data/questions.js'
+
+const STAGES = ['Start', 'Playing', 'End']
 
 const initialState = {
   gameStage: STAGES[0],
   questions,
   currentQuestion: 0,
   score: 0,
-  answerSelected: false,
-};
+  answerSelected: false
+}
+
+const randomSort = (array) => array.sort(() => Math.random() - 0.5)
 
 const quizReducer = (state, action) => {
   switch (action.type) {
-    case 'CHANGE_STATE':
+    case 'CHANGE_STATE': {
       return {
         ...state,
-        gameStage: STAGES[1],
-      };
+        gameStage: STAGES[1]
+      }
+    }
 
-    case 'REORDER_QUESTIONS':
-      const reorderedQuestions = questions.sort(() => Math.random() - 0.5);
+    case 'REORDER_QUESTIONS': {
+      const reorderedQuestions = randomSort(questions)
       return {
         ...state,
-        questions: reorderedQuestions,
-      };
+        questions: reorderedQuestions
+      }
+    }
 
-    case 'CHANGE_QUESTION':
-      const nextQuestion = state.currentQuestion + 1;
-      const endgame = !questions[nextQuestion];
+    case 'CHANGE_QUESTION': {
+      const nextQuestion = state.currentQuestion + 1
+      const endgame = !questions[nextQuestion]
 
       return {
         ...state,
         currentQuestion: nextQuestion,
         gameStage: endgame ? STAGES[2] : state.gameStage,
-        answerSelected: false,
-      };
+        answerSelected: false
+      }
+    }
 
-    case 'NEW_GAME':
-      return initialState;
+    case 'NEW_GAME': {
+      return initialState
+    }
 
-    case 'CHECK_ANSWER':
-      if (state.answerSelected) return state;
+    case 'CHECK_ANSWER': {
+      if (state.answerSelected) return state
 
-      const answer = action.payload.answer;
-      const option = action.payload.option;
+      const answer = action.payload.answer
+      const option = action.payload.option
 
-      const correctAnswer = answer === option;
+      const correctAnswer = answer === option
 
       return {
         ...state,
         score: correctAnswer ? state.score + 1 : state.score,
-        answerSelected: option,
-      };
+        answerSelected: option
+      }
+    }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export const QuizContext = createContext();
+export const QuizContext = createContext()
 
 export const QuizProvider = ({ children }) => {
-  const value = useReducer(quizReducer, initialState);
-  return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
-};
+  const value = useReducer(quizReducer, initialState)
+  return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>
+}
+
+QuizProvider.propTypes = {
+  children: PropTypes.node
+}.isRequired

@@ -1,19 +1,20 @@
-// React > componentes > estáticos
-import React, { useContext, useEffect } from 'react';
-import { QuizContext } from './context/quiz';
+// Importações do React > Componentes > Arquivos estáticos
 
-import Welcome from './components/Welcome';
-import Question from './components/Question';
-import GameOver from './components/GameOver';
+import React, { useContext, useEffect } from 'react'
+import { QuizContext } from './context/quiz'
 
-import './App.css';
+import Welcome from './components/Welcome'
+import Question from './components/Question'
+import GameOver from './components/GameOver'
 
-export default function App() {
-  const [quizState, dispatch] = useContext(QuizContext);
+import './App.css'
+
+export default function App () {
+  const [quizState, dispatch] = useContext(QuizContext)
 
   useEffect(() => {
-    dispatch({ type: 'REORDER_QUESTIONS' });
-  }, []);
+    dispatch({ type: 'REORDER_QUESTIONS' })
+  }, [])
 
   return (
     <div className="App">
@@ -22,5 +23,5 @@ export default function App() {
       {quizState.gameStage === 'Playing' && <Question />}
       {quizState.gameStage === 'End' && <GameOver />}
     </div>
-  );
+  )
 }
