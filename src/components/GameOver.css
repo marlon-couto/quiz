@@ -1,20 +1,20 @@
-#game_over {
+#game-over {
   text-align: center;
   max-width: 500px;
   display: flex;
   flex-direction: column;
 }
 
-#game_over h2,
-#game_over p {
+#game-over h2,
+#game-over p {
   margin-bottom: 1rem;
 }
 
-#game_over p {
+#game-over p {
   color: #8435de;
 }
 
-#game_over img {
+#game-over img {
   margin: 2rem;
   height: 200px;
 }

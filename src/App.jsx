@@ -1,5 +1,4 @@
 // Importações do React > Componentes > Arquivos estáticos
-
 import React, { useContext, useEffect } from 'react'
 import { QuizContext } from './context/quiz'
 
