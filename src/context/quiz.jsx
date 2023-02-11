@@ -1,9 +1,15 @@
-import PropTypes from 'prop-types'
 import React, { createContext, useReducer } from 'react'
-
+import PropTypes from 'prop-types'
+// TODO: trocar esse arquivo pelo arquivo de questões completo
 import questions from '../data/questions.js'
 
 const STAGES = ['Start', 'Playing', 'End']
+
+const CHANGE_QUESTION = 'CHANGE_QUESTION'
+const CHANGE_STATE = 'CHANGE_STATE'
+const CHECK_ANSWER = 'CHECK_ANSWER'
+const NEW_GAME = 'NEW_GAME'
+const REORDER_QUESTIONS = 'REORDER_QUESTIONS'
 
 const initialState = {
   gameStage: STAGES[0],
@@ -16,23 +22,26 @@ const initialState = {
 const randomSort = (array) => array.sort(() => Math.random() - 0.5)
 
 const quizReducer = (state, action) => {
-  switch (action.type) {
-    case 'CHANGE_STATE': {
+  const { type, payload } = action
+
+  switch (type) {
+    case CHANGE_STATE: {
       return {
         ...state,
         gameStage: STAGES[1]
       }
     }
 
-    case 'REORDER_QUESTIONS': {
+    case REORDER_QUESTIONS: {
       const reorderedQuestions = randomSort(questions)
+
       return {
         ...state,
         questions: reorderedQuestions
       }
     }
 
-    case 'CHANGE_QUESTION': {
+    case CHANGE_QUESTION: {
       const nextQuestion = state.currentQuestion + 1
       const endgame = !questions[nextQuestion]
 
@@ -44,15 +53,15 @@ const quizReducer = (state, action) => {
       }
     }
 
-    case 'NEW_GAME': {
+    case NEW_GAME: {
       return initialState
     }
 
-    case 'CHECK_ANSWER': {
+    case CHECK_ANSWER: {
       if (state.answerSelected) return state
 
-      const answer = action.payload.answer
-      const option = action.payload.option
+      const answer = payload.answer
+      const option = payload.option
 
       const correctAnswer = answer === option
 
@@ -78,3 +87,4 @@ export const QuizProvider = ({ children }) => {
 QuizProvider.propTypes = {
   children: PropTypes.node
 }.isRequired
+// TODO: adicionar dicas, pontuação baseada na dificuldade das questões, etc
